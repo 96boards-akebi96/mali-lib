@@ -39,7 +39,7 @@ typedef uint64_t mali_gralloc_internal_format;
 /* Base formats that do not have an identical HAL match
  * are defined starting at the Android private range
  */
-#define MALI_GRALLOC_FORMAT_INTERNAL_RANGE_BASE 0x110
+#define MALI_GRALLOC_FORMAT_INTERNAL_RANGE_BASE 0x100
 
 typedef enum
 {

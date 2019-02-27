@@ -18,18 +18,11 @@
 #ifndef MALI_GRALLOC_MODULE_H_
 #define MALI_GRALLOC_MODULE_H_
 
-#if __ANDROID_API__ < 27
-#include <system/window.h>
-#endif /* __ANDROID_API__ < 27 */
 #include <linux/fb.h>
 #include <pthread.h>
 
-#ifndef GRALLOC_USE_LEGACY_ION_API
-#define GRALLOC_USE_LEGACY_ION_API 1
-#endif
-
 #if GRALLOC_USE_LEGACY_ION_API != 1
-#include <ion/ion_4.12.h>
+#include <ion_4.12.h>
 #endif
 
 typedef enum

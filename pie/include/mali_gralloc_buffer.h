@@ -25,9 +25,6 @@
 #include <sys/mman.h>
 #include <cutils/native_handle.h>
 #include <string.h>
-#include <sys/types.h>
-
-#include "OMX_Video_SNI.h"
 
 #include "mali_gralloc_private_interface_types.h"
 
@@ -55,11 +52,6 @@ struct fb_dmabuf_export
 #define GRALLOC_ARM_NUM_FDS 2
 
 #define NUM_INTS_IN_PRIVATE_HANDLE ((sizeof(struct private_handle_t) - sizeof(native_handle)) / sizeof(int) - sNumFds)
-
-// for Decoder format
-enum {
-	HAL_PIXEL_FORMAT_YCbCr_420_101010 = 0x100, // YUV420 10bit
-};
 
 #define SZ_4K 0x00001000
 #define SZ_2M 0x00200000
@@ -145,9 +137,7 @@ struct private_handle_t
 		PRIV_FLAGS_FRAMEBUFFER = 0x00000001,
 		PRIV_FLAGS_USES_ION_COMPOUND_HEAP = 0x00000002,
 		PRIV_FLAGS_USES_ION = 0x00000004,
-		PRIV_FLAGS_USES_ION_DMA_HEAP = 0x00000008,
-		PRIV_FLAGS_USES_OVERLAY               = 0x00000100,
-		PRIV_FLAGS_USES_HDMIRX                = 0x00000200,
+		PRIV_FLAGS_USES_ION_DMA_HEAP = 0x00000008
 	};
 
 	enum
