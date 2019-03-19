@@ -1,0 +1,53 @@
+LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+LOCAL_MULTILIB      := both
+LOCAL_MODULE        := libGLES_mali
+LOCAL_SRC_FILES_32  := lib32/egl/libGLES_mali.so
+LOCAL_SRC_FILES_64  := lib64/egl/libGLES_mali.so
+LOCAL_MODULE_CLASS  := SHARED_LIBRARIES
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_PROPRIETARY_MODULE := true
+LOCAL_MODULE_RELATIVE_PATH := egl
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := egl.cfg
+LOCAL_MULTILIB := first
+LOCAL_MODULE_TAGS := eng optional tests
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_RELATIVE_PATH := egl
+LOCAL_SRC_FILES := egl.cfg
+LOCAL_PROPRIETARY_MODULE := true
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MULTILIB      := both
+LOCAL_MODULE        := gralloc.$(TARGET_BOARD_PLATFORM)
+LOCAL_SRC_FILES_32  := lib32/hw/gralloc.sc1401aj1.so
+LOCAL_SRC_FILES_64  := lib64/hw/gralloc.sc1401aj1.so
+LOCAL_MODULE_CLASS  := SHARED_LIBRARIES
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MODULE_PATH_32 := $(TARGET_OUT_VENDOR)/lib/hw
+LOCAL_MODULE_PATH_64 := $(TARGET_OUT_VENDOR)/lib64/hw
+LOCAL_PROPRIETARY_MODULE := true
+LOCAL_MODULE_OWNER := arm
+include $(BUILD_PREBUILT)
+
+
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := mali_kbase.ko
+LOCAL_MULTILIB := first
+LOCAL_MODULE_TAGS := eng optional tests
+LOCAL_MODULE_CLASS := ETC
+ifeq ($(BOARD_VNDK_VERSION),current)
+LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR)/lib/modules
+else
+LOCAL_MODULE_PATH := $(TARGET_OUT)/lib/modules
+endif
+LOCAL_SRC_FILES := bin/mali_kbase.ko
+LOCAL_MODULE_RELATIVE_PATH := extra
+include $(BUILD_PREBUILT)
