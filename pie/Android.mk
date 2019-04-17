@@ -11,6 +11,7 @@ LOCAL_MODULE_SUFFIX := .so
 LOCAL_PROPRIETARY_MODULE := true
 LOCAL_MODULE_RELATIVE_PATH := egl
 LOCAL_POST_INSTALL_CMD = \
+	if [ ! -e $(dir $(LOCAL_INSTALLED_MODULE))../hw ] ; then mkdir -p $(dir $(LOCAL_INSTALLED_MODULE))../hw ; fi ; \
 	cd $(dir $(LOCAL_INSTALLED_MODULE))../hw && ln -sf ../egl/$(notdir $(LOCAL_INSTALLED_MODULE)) vulkan.$(TARGET_BOARD_PLATFORM).so
 include $(BUILD_PREBUILT)
 
