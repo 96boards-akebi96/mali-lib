@@ -39,16 +39,3 @@ LOCAL_PROPRIETARY_MODULE := true
 LOCAL_MODULE_OWNER := arm
 include $(BUILD_PREBUILT)
 
-include $(CLEAR_VARS)
-LOCAL_MODULE := mali_kbase.ko
-LOCAL_MULTILIB := first
-LOCAL_MODULE_TAGS := eng optional tests
-LOCAL_MODULE_CLASS := ETC
-ifeq ($(BOARD_VNDK_VERSION),current)
-LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR)/lib/modules
-else
-LOCAL_MODULE_PATH := $(TARGET_OUT)/lib/modules
-endif
-LOCAL_SRC_FILES := bin/mali_kbase.ko
-LOCAL_MODULE_RELATIVE_PATH := extra
-include $(BUILD_PREBUILT)
